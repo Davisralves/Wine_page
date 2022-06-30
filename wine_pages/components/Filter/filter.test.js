@@ -10,7 +10,7 @@ describe("Test if filter page is render as aspected", () => {
 	});
 	it("checkboxs are render correctly", () => {
 		render(<Filter />);
-		const checkboxs = screen.getAllByRole("checkbox");
+		const checkboxs = screen.getAllByRole("radio");
 		expect(checkboxs).toHaveLength(5);
 		checkboxs.forEach((checkbox) => {
 			expect(checkbox).toHaveAttribute("value");
