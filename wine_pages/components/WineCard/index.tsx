@@ -121,7 +121,7 @@ export default function WineCard() {
 			</ImageContainer>
 			<WineName>Wine Name</WineName>
 			<CentralizeDiv>
-				<Price>R$ 30,00</Price>
+				<Price>R$ 37,50</Price>
 				<Discount>50% OFF</Discount>
 			</CentralizeDiv>
 			<CentralizeDiv>
