@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
+import WineCard from "../components/WineCard";
+import ProductGalery from "../components/ProductGalery";
 
 const StyledAside = styled.h4`
 	position: absolute;
@@ -41,8 +43,11 @@ const Home: NextPage = () => {
 		<main>
 			<Header />
 			<StyledHeading4>Redefine sua busca</StyledHeading4>
-			<SearchCount><strong>49</strong> Produtos encontrados</SearchCount>
+			<SearchCount>
+				<strong>49</strong> Produtos encontrados
+			</SearchCount>
 			<Filter />
+			<ProductGalery />   
 		</main>
 	);
 };

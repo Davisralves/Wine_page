@@ -24,7 +24,7 @@ const StyledLabel = styled.label`
 export default function CheckBox({ text, id, value }: Props) {
 	return (
 		<StyledDiv>
-			<input id={id} type="radio" value={value} />
+			<input id={id} type="radio" value={value} name="price" />
 			<StyledLabel htmlFor={id}>{text}</StyledLabel>
 		</StyledDiv>
 	);
