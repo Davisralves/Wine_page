@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
 import imagem from "../../public/favicon.ico";
-import SmallButton from "../SmallButton";
+import IWine from "../../interfaces/WineInterface";
+
 const CardDiv = styled.div`
 	left: 0%;
 	right: 0%;
@@ -12,8 +13,8 @@ const CardDiv = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    display: flex;
-    justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
 `;
 
 const CentralizeDiv = styled.div`
@@ -114,11 +115,15 @@ const NotMemberPrice = styled.div`
 	text-transform: uppercase;
 	color: #888888;
 `;
-export default function WineCard() {
+
+interface Props {
+	wine: IWine;
+}
+export default function WineCard({ wine }: Props) {
 	return (
 		<CardDiv>
 			<ImageContainer>
-				<Image alt="Wine" src={imagem} width="198.57px" height="178.13px" />
+				<Image alt="Wine" src={wine.image} width="198.57px" height="178.13px" />
 			</ImageContainer>
 			<WineName>Wine Name</WineName>
 			<CentralizeDiv>

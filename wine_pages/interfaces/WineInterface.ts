@@ -1,4 +1,4 @@
-export default interface Wine {
+export default interface IWine {
 	id: number;
 	image: string;
 	name: string;
