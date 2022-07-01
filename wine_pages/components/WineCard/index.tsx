@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import imagem from "../../public/favicon.ico";
+import SmallButton from "../SmallButton";
 const CardDiv = styled.div`
 	left: 0%;
 	right: 0%;
