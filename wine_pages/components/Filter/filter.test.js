@@ -8,14 +8,6 @@ describe("Test if filter page is render as aspected", () => {
 		const title = screen.getByText("Por Preço");
 		expect(title).toBeInTheDocument();
 	});
-	it("checkboxs are render correctly", () => {
-		render(<Filter />);
-		const checkboxs = screen.getAllByRole("radio");
-		expect(checkboxs).toHaveLength(5);
-		checkboxs.forEach((checkbox) => {
-			expect(checkbox).toHaveAttribute("value");
-		});
-	});
 	it("labels are render correctly", () => {
 		render(<Filter />);
 		const firstLabel = screen.getByLabelText("Até 40");
@@ -28,5 +20,13 @@ describe("Test if filter page is render as aspected", () => {
 		expect(thirdLabel).toBeInTheDocument();
 		expect(fourthLabel).toBeInTheDocument();
 		expect(fithLabel).toBeInTheDocument();
+	});
+	it("radio buttons are render correctly", () => {
+		render(<Filter />);
+		const radioButtons = screen.getAllByRole("radio");
+		expect(radioButtons).toHaveLength(5);
+		radioButtons.forEach((radioButton) => {
+			expect(radioButton).toBeInTheDocument();
+		});
 	});
 });
