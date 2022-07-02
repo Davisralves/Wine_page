@@ -2,9 +2,8 @@ import type { NextPage } from "next";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
-import WineCard from "../components/WineCard";
 import ProductGalery from "../components/ProductGalery";
-
+import wine from "../Wines/winesjson";
 const StyledAside = styled.h4`
 	position: absolute;
 	width: 256px;
@@ -38,6 +37,18 @@ const SearchCount = styled.div`
 	color: #262626;
 `;
 
+const data = {
+	message: "string",
+	result: {
+		id: "string",
+		films: "string",
+		people: "string",
+		planets: "string",
+		species: "string",
+		vehicles: "string",
+	},
+};
+
 const Home: NextPage = () => {
 	return (
 		<main>
@@ -47,7 +58,7 @@ const Home: NextPage = () => {
 				<strong>49</strong> Produtos encontrados
 			</SearchCount>
 			<Filter />
-			<ProductGalery />   
+			<ProductGalery data={{ items: wine }} />
 		</main>
 	);
 };

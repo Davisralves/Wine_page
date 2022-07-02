@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import imagem from "../../public/favicon.ico";
 import IWine from "../../interfaces/WineInterface";
 
 const CardDiv = styled.div`
@@ -116,6 +115,10 @@ const NotMemberPrice = styled.div`
 	color: #888888;
 `;
 
+const myLoader = ({ src }: {src: string}) => {
+    return src
+  }
+
 interface Props {
 	wine: IWine;
 }
@@ -123,7 +126,7 @@ export default function WineCard({ wine }: Props) {
 	return (
 		<CardDiv>
 			<ImageContainer>
-				<Image alt="Wine" src={wine.image} width="198.57px" height="178.13px" />
+				<Image alt="Wine" loader={myLoader} src={wine.image} width="198.57px" height="178.13px" />
 			</ImageContainer>
 			<WineName>Wine Name</WineName>
 			<CentralizeDiv>

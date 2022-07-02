@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import SmallButton from "../SmallButton";
 import WineCard from "../WineCard";
+import Wine from "../../interfaces/WineInterface";
+import {
+	GetServerSideProps,
+	GetStaticProps,
+	InferGetServerSidePropsType,
+} from "next";
 import IWine from "../../interfaces/WineInterface";
-import { GetServerSideProps } from "next";
+
+const link = `https://wine-back-test.herokuapp.com/products?page=1&limit=10`;
 
 const Galery = styled.div`
 	display: flex;
@@ -30,10 +37,10 @@ interface Props {
 	};
 }
 
-export default function ProductGalery({ data: { items } }: Props) {
+export default function ProductGalery({ data }: Props) {
 	return (
 		<Galery>
-			{items.map((item, index) => (
+			{data.items.map((item, index) => (
 				<CardButtonDiv key={index}>
 					<WineCard wine={item} />
 					<SmallButton />
@@ -43,11 +50,10 @@ export default function ProductGalery({ data: { items } }: Props) {
 	);
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-	const res = await fetch(
-		`https://wine-back-test.herokuapp.com/products?page=1&limit=10`
-	);
+export const getStaticProps: GetStaticProps = async () => {
+	const res = await fetch(link);
+	console.log(res);
 	const data = await res.json();
-
+	console.log(data);
 	return { props: { data } };
 };
