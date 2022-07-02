@@ -11,4 +11,11 @@ describe("Test if product galery render as aspected", () => {
 		expect(button1).toBeInTheDocument();
 		expect(button2).toBeInTheDocument();
 	});
+	it("Cards are render correctly", () => {
+		render(<ProductGalery data={{ items: wine }} />);
+		const cardsAndButtons = screen.getAllByTestId("button-and-card");
+		expect(cardsAndButtons).toHaveLength(2);
+		expect(cardsAndButtons[0]).toBeInTheDocument();
+		expect(cardsAndButtons[1]).toBeInTheDocument();
+	});
 });

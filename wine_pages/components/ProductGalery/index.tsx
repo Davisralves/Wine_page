@@ -41,7 +41,7 @@ export default function ProductGalery({ data }: Props) {
 	return (
 		<Galery>
 			{data.items.map((item, index) => (
-				<CardButtonDiv key={index}>
+				<CardButtonDiv data-testid="button-and-card" key={index}>
 					<WineCard wine={item} />
 					<SmallButton />
 				</CardButtonDiv>
