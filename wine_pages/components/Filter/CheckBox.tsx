@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-interface Props {
-	text: string;
-	id: string;
-	value: number;
-}
-
 const StyledDiv = styled.div`
 	display: flex;
 	margin: 5px;
@@ -20,6 +14,12 @@ const StyledLabel = styled.label`
 	align-items: center;
 	color: #1d1d1b;
 `;
+
+interface Props {
+	text: string;
+	id: string;
+	value: string;
+}
 
 export default function CheckBox({ text, id, value }: Props) {
 	return (

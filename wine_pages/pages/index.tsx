@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
 import wine from "../mocks/winesjson";
+import { useState } from "react";
+
 const StyledAside = styled.h4`
 	position: absolute;
 	width: 256px;
@@ -37,19 +39,10 @@ const SearchCount = styled.div`
 	color: #262626;
 `;
 
-const data = {
-	message: "string",
-	result: {
-		id: "string",
-		films: "string",
-		people: "string",
-		planets: "string",
-		species: "string",
-		vehicles: "string",
-	},
-};
-
 const Home: NextPage = () => {
+
+    const [filter, setFilter] = useState([0, 99999])
+
 	return (
 		<main>
 			<Header />
@@ -57,8 +50,8 @@ const Home: NextPage = () => {
 			<SearchCount>
 				<strong>49</strong> Produtos encontrados
 			</SearchCount>
-			<Filter />
-			<ProductGalery data={{ items: wine }} />
+			<Filter SetFilter={setFilter} />
+			<ProductGalery data={{ items: wine }} filter={filter} />
 		</main>
 	);
 };

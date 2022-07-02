@@ -35,17 +35,24 @@ interface Props {
 	data: {
 		items: IWine[];
 	};
+	filter: number[];
 }
 
-export default function ProductGalery({ data }: Props) {
+export default function ProductGalery({ data, filter }: Props) {
+	const [greaterThanThisValue, lesserThanThisValue] = filter;
+	const galeryCard = (item: IWine, index: number) => (
+		<CardButtonDiv data-testid="button-and-card" key={index}>
+			<WineCard wine={item} />
+			<SmallButton />
+		</CardButtonDiv>
+	);
 	return (
 		<Galery>
-			{data.items.map((item, index) => (
-				<CardButtonDiv data-testid="button-and-card" key={index}>
-					<WineCard wine={item} />
-					<SmallButton />
-				</CardButtonDiv>
-			))}
+			{data.items.map((item, index) =>
+				item.price > greaterThanThisValue && item.price < lesserThanThisValue
+					? galeryCard(item, index)
+					: null
+			)}
 		</Galery>
 	);
 }

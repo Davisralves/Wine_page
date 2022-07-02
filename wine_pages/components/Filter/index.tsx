@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import CheckBox from "./CheckBox";
-
+import { Dispatch, SetStateAction } from "react";
+import { FormEventHandler } from "react";
 const StyledFilter = styled.aside`
 	position: absolute;
 	width: 256px;
@@ -42,18 +43,31 @@ const StyledForm = styled.form`
 	bottom: 0%;
 `;
 
-export default function Filter() {
+interface Props {
+	SetFilter: Dispatch<SetStateAction<number[]>>;
+}
+
+export default function Filter({ SetFilter }: Props) {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const [greaterThanThisValue, lesserThanThisValue] =
+			event.target.value.split("_");
+		SetFilter([
+			parseInt(greaterThanThisValue, 10),
+			parseInt(lesserThanThisValue, 10),
+		]);
+	};
+
 	return (
 		<StyledFilter>
 			<StyledPrice>
 				<PriceWord>Por Preço</PriceWord>
 			</StyledPrice>
-			<StyledForm>
-				<CheckBox text="Até 40" id="ate_40" value={40} />
-				<CheckBox text="R$40 A R$60" id="de_40_60" value={60} />
-				<CheckBox text="R$100 A R$200" id="de_100_200" value={100} />
-				<CheckBox text="R$200 A R$500" id="de_200_500" value={200} />
-				<CheckBox text="Acima de R$500" id="acima_500" value={500} />
+			<StyledForm onChange={handleChange}>
+				<CheckBox text="Até 40" id="ate_40" value={"0_40"} />
+				<CheckBox text="R$40 A R$60" id="de_40_60" value={"40_60"} />
+				<CheckBox text="R$100 A R$200" id="de_100_200" value={"100_200"} />
+				<CheckBox text="R$200 A R$500" id="de_200_500" value={"200_500"} />
+				<CheckBox text="Acima de R$500" id="acima_500" value={"500_99999"} />
 			</StyledForm>
 		</StyledFilter>
 	);
