@@ -122,9 +122,9 @@ const myLoader = ({ src }: { src: string }) => {
 const renderPrice = (priceNumber: number) => {
 	const priceString = priceNumber.toString();
 	const [price, priceCents] = priceString.split(".") as [string, string];
-	if (priceCents == undefined) return `R$${price},00`;
-	if (priceCents.length == 2) return `R$${price},${priceCents}`;
-	if (priceCents.length == 1) return `R$${price},${priceCents}0`;
+	if (priceCents == undefined) return `R$ ${price},00`;
+	if (priceCents.length == 2) return `R$ ${price},${priceCents}`;
+	if (priceCents.length == 1) return `R$ ${price},${priceCents}0`;
 };
 
 interface Props {
