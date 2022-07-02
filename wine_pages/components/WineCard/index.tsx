@@ -114,9 +114,10 @@ const NotMemberPrice = styled.div`
 	text-transform: uppercase;
 	color: #888888;
 `;
-
 const myLoader = ({ src }: { src: string }) => {
-	return src;
+	const [init_url, final_url] = src.split("f=png,");
+	const image_url = `${init_url}f=png,w=198.57,${final_url}`;
+	return image_url;
 };
 
 const renderPrice = (priceNumber: number) => {
