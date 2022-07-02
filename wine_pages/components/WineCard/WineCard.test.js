@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 describe("Test if product wine card is render as aspected", () => {
-	it("Paginas são renderizadas corretamente", () => {
+	it("Card are render correctly", () => {
 		render(<WineCard />);
 		const wineImage = screen.getByAltText("Wine");
 		const wineName = screen.getByText("Wine Name");

@@ -3,7 +3,7 @@ import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
-import wine from "../Wines/winesjson";
+import wine from "../mocks/winesjson";
 const StyledAside = styled.h4`
 	position: absolute;
 	width: 256px;
