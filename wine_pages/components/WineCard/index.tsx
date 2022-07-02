@@ -115,29 +115,48 @@ const NotMemberPrice = styled.div`
 	color: #888888;
 `;
 
-const myLoader = ({ src }: {src: string}) => {
-    return src
-  }
+const myLoader = ({ src }: { src: string }) => {
+	return src;
+};
+
+const renderPrice = (priceNumber: number) => {
+	const priceString = priceNumber.toString();
+	const [price, priceCents] = priceString.split(".") as [string, string];
+	if (priceCents == undefined) return `R$${price},00`;
+	if (priceCents.length == 2) return `R$${price},${priceCents}`;
+	if (priceCents.length == 1) return `R$${price},${priceCents}0`;
+};
 
 interface Props {
 	wine: IWine;
 }
-export default function WineCard({ wine }: Props) {
+
+export default function WineCard({
+	wine: { image, name, price, priceMember, priceNonMember, discount },
+}: Props) {
 	return (
 		<CardDiv>
 			<ImageContainer>
-				<Image alt="Wine" loader={myLoader} src={wine.image} width="198.57px" height="178.13px" />
+				<Image
+					alt="Wine"
+					loader={myLoader}
+					src={image}
+					width="198.57px"
+					height="178.13px"
+				/>
 			</ImageContainer>
-			<WineName>Wine Name</WineName>
+			<WineName>{name}</WineName>
 			<CentralizeDiv>
-				<Price>R$ 37,50</Price>
-				<Discount>50% OFF</Discount>
+				<Price>{renderPrice(price)}</Price>
+				<Discount>{`${discount}%OFF`}</Discount>
 			</CentralizeDiv>
 			<CentralizeDiv>
 				<MemberWine>Sócio Wine</MemberWine>
-				<MemberPrice>R$ 30,00</MemberPrice>
+				<MemberPrice>{renderPrice(priceMember)}</MemberPrice>
 			</CentralizeDiv>
-			<NotMemberPrice>Não sócio Wine 37,40</NotMemberPrice>
+			<NotMemberPrice>
+				Não sócio Wine {renderPrice(priceNonMember)}
+			</NotMemberPrice>
 		</CardDiv>
 	);
 }
