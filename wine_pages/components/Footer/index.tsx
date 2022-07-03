@@ -18,12 +18,20 @@ interface PageButtonProps {
 
 const PageButtons = styled.a<PageButtonProps>`
 	margin: 0.2em;
-	background: #b6116e;
+	background: white;
 	padding: 0.8em;
-	color: white;
+	color: #b6116e;
 	pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-`;
 
+	&:hover {
+		background: #b6116e;
+		color: white;
+	}
+`;
+const DisabledPageButton = styled(PageButtons)`
+	background: #b6116e;
+	color: white;
+`;
 const PassPage = styled.a`
 	font-family: "Lato";
 	font-style: normal;
@@ -34,6 +42,10 @@ const PassPage = styled.a`
 	align-items: center;
 	color: #b6116e;
 	padding: 0.8em;
+	&:hover {
+		background: #b6116e;
+		color: white;
+	}
 `;
 export default function Footer() {
 	const { query } = useRouter();
@@ -50,7 +62,7 @@ export default function Footer() {
 			{[actualPage, actualPage + 1, actualPage + 2].map((page, index) => (
 				<Link href={`/?page=${page}`} key={index}>
 					{actualPage == page ? (
-						<PageButtons disabled>{page}</PageButtons>
+						<DisabledPageButton disabled>{page}</DisabledPageButton>
 					) : (
 						<PageButtons>{page}</PageButtons>
 					)}
