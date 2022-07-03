@@ -15,7 +15,7 @@ const Galery = styled.div`
 	align-content: flex-start;
 	width: 832px;
 	height: 1225px;
-	left: 448px;
+	left: 25%;
 	top: 182px;
 `;
 

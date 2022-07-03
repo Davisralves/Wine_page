@@ -8,7 +8,7 @@ import Image from "next/image";
 const StyledHeader = styled.header`
 	background: #ffffff;
 	width: 6%;
-	padding-bottom: 4.4%;
+	padding-bottom: 8.5%;
 `;
 
 const StylePages = styled.div`
@@ -39,28 +39,28 @@ const StyledNav = styled.nav`
 	position: absolute;
 	width: 479px;
 	height: 24px;
-	left: calc(50% - 479px / 2 - 144.35px);
+	left: 20%;
 	top: 32px;
 `;
 
 const SearchIcon = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 20%;
+	right: 18%;
 	top: 2.5%;
 `;
 
 const UserLogo = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 15%;
-	top: 2.5%;
+	right: 10%;
+	top: 3%;
 `;
 const Cart = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 10%;
-	top: 2.5%;
+	right: 2%;
+	top: 3%;
 `;
 
 const CartCounter = styled.div`
@@ -87,7 +87,7 @@ const LogoContainer = styled.div`
 	height: 31px;
 	position: absolute;
 	left: 5%;
-	top: 2.5%;
+	top: 5%;
 `;
 export default function Header() {
 	return (

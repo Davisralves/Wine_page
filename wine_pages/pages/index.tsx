@@ -22,6 +22,7 @@ const StyledAside = styled.h4`
 `;
 
 const StyledHeading4 = styled(StyledAside)`
+    left: 7%;
 	font-family: "Neo Sans Std";
 	font-style: normal;
 	font-weight: 700;

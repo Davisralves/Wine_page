@@ -6,7 +6,7 @@ const StyledFilter = styled.aside`
 	position: absolute;
 	width: 256px;
 	height: 242px;
-	left: 160px;
+	left: 7%;
 	top: 183px;
 `;
 
