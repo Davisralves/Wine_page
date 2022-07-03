@@ -8,7 +8,7 @@ import Image from "next/image";
 const StyledHeader = styled.header`
 	background: #ffffff;
 	width: 6%;
-	padding-bottom: 8.5%;
+	padding-bottom: 6.8%;
 `;
 
 const StylePages = styled.div`

@@ -62,7 +62,7 @@ export default function Filter({ SetFilter }: Props) {
 			<StyledPrice>
 				<PriceWord>Por Preço</PriceWord>
 			</StyledPrice>
-			<StyledForm onChange={handleChange}>
+			<StyledForm onChange={ handleChange }>
 				<CheckBox text="Até 40" id="ate_40" value={"0_40"} />
 				<CheckBox text="R$40 A R$60" id="de_40_60" value={"40_60"} />
 				<CheckBox text="R$100 A R$200" id="de_100_200" value={"100_200"} />

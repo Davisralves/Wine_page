@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import SmallButton from "../SmallButton";
 import WineCard from "../WineCard";
 
 import IWine from "../../interfaces/WineInterface";
-
 
 const Galery = styled.div`
 	display: flex;
@@ -25,6 +23,28 @@ const CardButtonDiv = styled.div`
 	width: 256px;
 `;
 
+const SmallButton = styled.button`
+	/* Auto layout */
+	padding: 11.6806px 23.3612px;
+	gap: 9.73px;
+	width: 256px;
+	height: 39.36px;
+	top: 348px;
+	margin-top: 30px;
+	/* functional / sucess-default */
+	background: #7ebc43;
+	box-shadow: 0px 0.973384px 1.94677px rgba(0, 0, 0, 0.2);
+	border-radius: 3.89354px;
+	border-color: #7ebc43;
+	/* Button font*/
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	color: white;
+`;
+
 interface Props {
 	data: {
 		items: IWine[];
@@ -32,12 +52,28 @@ interface Props {
 	filter: number[];
 }
 
+const createCart = () => {
+	const cartExist = localStorage.getItem("cart");
+	if (cartExist) return true;
+	else localStorage.setItem("cart", "[]");
+};
+
+const saveWineInCart = (item: IWine) => {
+	createCart();
+	const actual_cart = JSON.parse(localStorage.getItem("cart") as string);
+	const productInCart = actual_cart.find(({ id }: IWine) => id == item.id);
+	if (!productInCart) {
+		actual_cart.push(item);
+		localStorage.setItem("cart", JSON.stringify(actual_cart));
+	}
+};
+
 function ProductGalery({ data, filter }: Props) {
 	const [greaterThanThisValue, lesserThanThisValue] = filter;
 	const galeryCard = (item: IWine, index: number) => (
 		<CardButtonDiv data-testid="button-and-card" key={index}>
 			<WineCard wine={item} />
-			<SmallButton />
+			<SmallButton onClick={() => saveWineInCart(item)}>Adicionar</SmallButton>
 		</CardButtonDiv>
 	);
 	return (
@@ -50,6 +86,5 @@ function ProductGalery({ data, filter }: Props) {
 		</Galery>
 	);
 }
-
 
 export default ProductGalery;
