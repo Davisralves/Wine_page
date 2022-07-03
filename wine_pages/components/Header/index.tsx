@@ -50,7 +50,7 @@ const SearchIcon = styled.div`
 	top: 2.5%;
 `;
 
-const CountIcon = styled.div`
+const UserLogo = styled.div`
 	position: absolute;
 	width: 56px;
 	right: 15%;
@@ -104,13 +104,13 @@ export default function Header() {
 			</StyledNav>
 
 			<SearchIcon>
-				<Image alt="wine logo" width="56px" height="56px" src={searchLogo} />
+				<Image alt="search logo" width="56px" height="56px" src={searchLogo} />
 			</SearchIcon>
-			<CountIcon>
-				<Image alt="wine logo" width="56px" height="56px" src={countLogo} />
-			</CountIcon>
+			<UserLogo>
+				<Image alt="user logo" width="56px" height="56px" src={countLogo} />
+			</UserLogo>
 			<Cart>
-				<Image alt="Cart Logo" width="56px" height="56px" src={cartLogo} />
+				<Image alt="cart logo" width="56px" height="56px" src={cartLogo} />
 				<CartCounter>0</CartCounter>
 			</Cart>
 		</StyledHeader>
