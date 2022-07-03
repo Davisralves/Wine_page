@@ -1,11 +1,12 @@
-import type { NextPage } from "next";
+import type { InferGetServerSidePropsType, NextPage } from "next";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
 import IWine from "../interfaces/WineInterface";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetServerSideProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
+import Link from "next/link";
 const StyledMain = styled.main`
 	background: #ffffff;
 	border-width: 0.1px;
@@ -21,7 +22,7 @@ const StyledAside = styled.h4`
 `;
 
 const StyledHeading4 = styled(StyledAside)`
-    left: 7%;
+	left: 7%;
 	font-family: "Neo Sans Std";
 	font-style: normal;
 	font-weight: 700;
@@ -51,8 +52,11 @@ interface Props {
 		};
 	};
 }
-export const getStaticProps: GetStaticProps = async (): Promise<Props> => {
-	const link = `https://wine-back-test.herokuapp.com/products?page=1&limit=9`;
+export const getServerSideProps: GetServerSideProps = async (
+	context
+): Promise<Props> => {
+	const page = context.query.page || 1;
+	const link = `https://wine-back-test.herokuapp.com/products?page=${page}&limit=10`;
 	const res = await fetch(link);
 	const data = await res.json();
 	return { props: { data } };
@@ -60,8 +64,8 @@ export const getStaticProps: GetStaticProps = async (): Promise<Props> => {
 
 const Home: NextPage = ({
 	data,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-	const [filter, setFilter] = useState([0, 99999]);
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const [valueFilter, setValueFilter] = useState([0, 99999]);
 	const [cartCounter, setCartCounter] = useState(0);
 	return (
 		<StyledMain>
@@ -70,8 +74,12 @@ const Home: NextPage = ({
 			<SearchCount>
 				<strong>{data.items.length}</strong> Produtos encontrados
 			</SearchCount>
-			<Filter SetFilter={setFilter} />
-			<ProductGalery data={data} filter={filter} setCartCounter={setCartCounter}/>
+			<Filter SetFilter={setValueFilter} />
+			<ProductGalery
+				data={data}
+				filter={valueFilter}
+				setCartCounter={setCartCounter}
+			/>
 		</StyledMain>
 	);
 };
