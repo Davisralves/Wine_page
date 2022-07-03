@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import cartImage from "../../images/cart.png";
+import wineLogo from "../../images/black.png";
+import searchLogo from "../../images/busca.png";
+import cartLogo from "../../images/winebox.png";
+import countLogo from "../../images/conta.png";
+import Image from "next/image";
+
 const StyledHeader = styled.header`
-	position: absolute;
-	left: 0%;
-	right: 0%;
-	top: 1.14%;
-	bottom: -1.14%;
 	background: #ffffff;
+	width: 6%;
+	padding-bottom: 4.4%;
 `;
 
 const StylePages = styled.div`
@@ -16,6 +18,15 @@ const StylePages = styled.div`
 	font-size: 18px;
 	line-height: 24px;
 	color: #555555;
+`;
+
+const PageSelected = styled(StylePages)`
+	color: #d14b8f;
+	border-block-end: solid;
+	text-align: center;
+	vertical-align: middle;
+	padding: 2em 0 2em 0;
+	border-width: 3px;
 `;
 
 const StyledNav = styled.nav`
@@ -32,68 +43,75 @@ const StyledNav = styled.nav`
 	top: 32px;
 `;
 
-const WineLogo = styled.div`
-	position: absolute;
-	left: 2.18%;
-	right: 0.68%;
-	top: 0%;
-	bottom: 9.68%;
-`;
-
 const SearchIcon = styled.div`
 	position: absolute;
 	width: 56px;
-	height: 56px;
-	left: calc(50% - 56px / 2 + 341.28px);
-	top: calc(50% - 56px / 2 - 0.12px);
+	right: 20%;
+	top: 2.5%;
 `;
 
-const Elipse = styled.div`
-	box-sizing: border-box;
+const CountIcon = styled.div`
 	position: absolute;
-	left: -0.5%;
-	right: 0.5%;
-	top: 0%;
-	bottom: 0%;
-	border: 2px solid #555555;
+	width: 56px;
+	right: 15%;
+	top: 2.5%;
 `;
-
-const Lupa = styled.div`
-	position: absolute;
-	left: 15.57%;
-	right: 16.57%;
-	top: 16.07%;
-	bottom: 16.07%;
-`;
-
 const Cart = styled.div`
 	position: absolute;
 	width: 56px;
-	height: 56px;
-	left: 0px;
-	top: 0px;
+	right: 10%;
+	top: 2.5%;
 `;
-const CartImage = styled.img`
+
+const CartCounter = styled.div`
 	position: absolute;
-	width: 40px;
-	height: 56px;
-	right: 8px;
-	top: calc(50% - 56px / 2 + 2px);
-	background: url("../../images/cart.png");
+	width: 20px;
+	height: 20px;
+	left: 60%;
+	top: 60%;
+	color: #4fbfa5;
+	font-size: large;
+	font-weight: 600;
+	font-family: "Lato";
+	background-color: white;
+	border-radius: 50%;
+	display: inline-block;
+	text-align: center;
+	border: solid;
+	border-color: grey;
+	border-width: 0.5px;
+`;
+
+const LogoContainer = styled.div`
+	width: 102.95px;
+	height: 31px;
+	position: absolute;
+	left: 5%;
+	top: 2.5%;
 `;
 export default function Header() {
 	return (
 		<StyledHeader>
-			<WineLogo>Wine</WineLogo>
+			<LogoContainer>
+				<Image alt="wine logo" width="102.95px" height="31px" src={wineLogo} />
+			</LogoContainer>
 			<StyledNav>
 				<StylePages>Club</StylePages>
-				<StylePages>Loja</StylePages>
+				<PageSelected>Loja</PageSelected>
 				<StylePages>Produtores</StylePages>
 				<StylePages>Ofertas</StylePages>
 				<StylePages>Eventos</StylePages>
 			</StyledNav>
+
+			<SearchIcon>
+				<Image alt="wine logo" width="56px" height="56px" src={searchLogo} />
+			</SearchIcon>
+			<CountIcon>
+				<Image alt="wine logo" width="56px" height="56px" src={countLogo} />
+			</CountIcon>
 			<Cart>
-				<CartImage src="../../images/cart.png" />
+				<Image alt="Cart Logo" width="56px" height="56px" src={cartLogo} />
+				<CartCounter>0</CartCounter>
 			</Cart>
 		</StyledHeader>
 	);

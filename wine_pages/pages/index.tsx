@@ -6,6 +6,12 @@ import ProductGalery from "../components/ProductGalery";
 import wine from "../mocks/winesjson";
 import { useState } from "react";
 
+const StyledMain = styled.main`
+	background: #ffffff;
+	border-width: 0.1px;
+	border-color: lightgray;
+`;
+
 const StyledAside = styled.h4`
 	position: absolute;
 	width: 256px;
@@ -40,11 +46,10 @@ const SearchCount = styled.div`
 `;
 
 const Home: NextPage = () => {
-
-    const [filter, setFilter] = useState([0, 99999])
+	const [filter, setFilter] = useState([0, 99999]);
 
 	return (
-		<main>
+		<StyledMain>
 			<Header />
 			<StyledHeading4>Redefine sua busca</StyledHeading4>
 			<SearchCount>
@@ -52,7 +57,7 @@ const Home: NextPage = () => {
 			</SearchCount>
 			<Filter SetFilter={setFilter} />
 			<ProductGalery data={{ items: wine }} filter={filter} />
-		</main>
+		</StyledMain>
 	);
 };
 
