@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import WineCard from "../WineCard";
-
+import { saveWineInCart } from "../../services/cartLocalStorage";
 import IWine from "../../interfaces/WineInterface";
+import { Dispatch, SetStateAction } from "react";
 
 const Galery = styled.div`
 	display: flex;
@@ -50,30 +51,18 @@ interface Props {
 		items: IWine[];
 	};
 	filter: number[];
+	setCartCounter: Dispatch<SetStateAction<number>>;
 }
 
-const createCart = () => {
-	const cartExist = localStorage.getItem("cart");
-	if (cartExist) return true;
-	else localStorage.setItem("cart", "[]");
-};
-
-const saveWineInCart = (item: IWine) => {
-	createCart();
-	const actual_cart = JSON.parse(localStorage.getItem("cart") as string);
-	const productInCart = actual_cart.find(({ id }: IWine) => id == item.id);
-	if (!productInCart) {
-		actual_cart.push(item);
-		localStorage.setItem("cart", JSON.stringify(actual_cart));
-	}
-};
-
-function ProductGalery({ data, filter }: Props) {
+function ProductGalery({ data, filter, setCartCounter }: Props) {
 	const [greaterThanThisValue, lesserThanThisValue] = filter;
+	const handleClick = (item: IWine) => {
+		setCartCounter(saveWineInCart(item));
+	};
 	const galeryCard = (item: IWine, index: number) => (
 		<CardButtonDiv data-testid="button-and-card" key={index}>
 			<WineCard wine={item} />
-			<SmallButton onClick={() => saveWineInCart(item)}>Adicionar</SmallButton>
+			<SmallButton onClick={() => handleClick(item)}>Adicionar</SmallButton>
 		</CardButtonDiv>
 	);
 	return (

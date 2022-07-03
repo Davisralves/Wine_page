@@ -6,7 +6,6 @@ import ProductGalery from "../components/ProductGalery";
 import IWine from "../interfaces/WineInterface";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
-
 const StyledMain = styled.main`
 	background: #ffffff;
 	border-width: 0.1px;
@@ -63,16 +62,16 @@ const Home: NextPage = ({
 	data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [filter, setFilter] = useState([0, 99999]);
-
+	const [cartCounter, setCartCounter] = useState(0);
 	return (
 		<StyledMain>
-			<Header />
+			<Header cartCounter={cartCounter} />
 			<StyledHeading4>Redefine sua busca</StyledHeading4>
 			<SearchCount>
 				<strong>{data.items.length}</strong> Produtos encontrados
 			</SearchCount>
 			<Filter SetFilter={setFilter} />
-			<ProductGalery data={data} filter={filter} />
+			<ProductGalery data={data} filter={filter} setCartCounter={setCartCounter}/>
 		</StyledMain>
 	);
 };
