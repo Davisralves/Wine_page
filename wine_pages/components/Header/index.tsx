@@ -123,7 +123,7 @@ export default function Header({ cartCounter }: Props) {
 			</UserLogo>
 			<Cart>
 				<Image alt="cart logo" width="56px" height="56px" src={cartLogo} />
-				<CartCounter>{cartCounter}</CartCounter>
+				<CartCounter data-testid="cart-counter">{cartCounter}</CartCounter>
 			</Cart>
 		</StyledHeader>
 	);
