@@ -3,7 +3,8 @@ import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
-import wine from "../mocks/winesjson";
+import IWine from "../interfaces/WineInterface";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
 
 const StyledMain = styled.main`
@@ -40,12 +41,26 @@ const SearchCount = styled.div`
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 22px;
-	/* identical to box height */
-
 	color: #262626;
 `;
 
-const Home: NextPage = () => {
+interface Props {
+	props: {
+		data: {
+			items: IWine[];
+		};
+	};
+}
+export const getStaticProps: GetStaticProps = async (): Promise<Props> => {
+	const link = `https://wine-back-test.herokuapp.com/products?page=1&limit=9`;
+	const res = await fetch(link);
+	const data = await res.json();
+	return { props: { data } };
+};
+
+const Home: NextPage = ({
+	data,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const [filter, setFilter] = useState([0, 99999]);
 
 	return (
@@ -53,10 +68,10 @@ const Home: NextPage = () => {
 			<Header />
 			<StyledHeading4>Redefine sua busca</StyledHeading4>
 			<SearchCount>
-				<strong>49</strong> Produtos encontrados
+				<strong>{data.items.length}</strong> Produtos encontrados
 			</SearchCount>
 			<Filter SetFilter={setFilter} />
-			<ProductGalery data={{ items: wine }} filter={filter} />
+			<ProductGalery data={data} filter={filter} />
 		</StyledMain>
 	);
 };
