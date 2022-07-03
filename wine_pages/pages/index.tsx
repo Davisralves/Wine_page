@@ -6,7 +6,6 @@ import ProductGalery from "../components/ProductGalery";
 import IWine from "../interfaces/WineInterface";
 import { GetServerSideProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
-import Link from "next/link";
 const StyledMain = styled.main`
 	background: #ffffff;
 	border-width: 0.1px;

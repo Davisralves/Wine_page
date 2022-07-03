@@ -3,7 +3,7 @@ import WineCard from "../WineCard";
 import { saveWineInCart } from "../../services/cartLocalStorage";
 import IWine from "../../interfaces/WineInterface";
 import { Dispatch, SetStateAction } from "react";
-
+import Footer from "../Footer";
 const Galery = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -72,6 +72,7 @@ function ProductGalery({ data, filter, setCartCounter }: Props) {
 					? galeryCard(item, index)
 					: null
 			)}
+			<Footer />
 		</Galery>
 	);
 }
