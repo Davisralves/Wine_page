@@ -52,9 +52,10 @@ interface Props {
 	};
 	filter: number[];
 	setCartCounter: Dispatch<SetStateAction<number>>;
+	nameFilter: string;
 }
 
-function ProductGalery({ data, filter, setCartCounter }: Props) {
+function ProductGalery({ data, filter, setCartCounter, nameFilter }: Props) {
 	const [greaterThanThisValue, lesserThanThisValue] = filter;
 	const handleClick = (item: IWine) => {
 		setCartCounter(saveWineInCart(item));
@@ -68,7 +69,9 @@ function ProductGalery({ data, filter, setCartCounter }: Props) {
 	return (
 		<Galery>
 			{data.items.map((item, index) =>
-				item.price > greaterThanThisValue && item.price < lesserThanThisValue
+				item.price > greaterThanThisValue &&
+				item.price < lesserThanThisValue &&
+				item.name.toLocaleLowerCase().includes(nameFilter.toLocaleLowerCase())
 					? galeryCard(item, index)
 					: null
 			)}

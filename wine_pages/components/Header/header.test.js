@@ -1,5 +1,5 @@
 import Header from "./index";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 describe("Test if Header page is render as aspected", () => {
@@ -26,5 +26,14 @@ describe("Test if Header page is render as aspected", () => {
 		expect(searchLogo).toBeInTheDocument();
 		expect(userLogo).toBeInTheDocument();
 		expect(cartLogo).toBeInTheDocument();
+	});
+	it("Ao clicar na lupa renderiza input", () => {
+		render(<Header />);
+		const searchLogo = screen.getByAltText("search logo");
+		let inputSearch = screen.queryByRole("textbox");
+		expect(inputSearch).not.toBeInTheDocument();
+		fireEvent.click(searchLogo);
+		inputSearch = screen.getByRole("textbox");
+		expect(inputSearch).toBeInTheDocument();
 	});
 });

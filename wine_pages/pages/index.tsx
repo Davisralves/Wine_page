@@ -28,6 +28,10 @@ const StyledHeading4 = styled(StyledAside)`
 	font-size: 20px;
 	line-height: 24px;
 	color: #000000;
+
+	&:hover {
+		color: #b6116e;
+	}
 `;
 
 const SearchCount = styled.div`
@@ -64,19 +68,27 @@ export const getServerSideProps: GetServerSideProps = async (
 const Home: NextPage = ({
 	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	const [valueFilter, setValueFilter] = useState([0, 99999]);
+	const [filterValue, setFilterValue] = useState([0, 99999]);
+	const [nameFilter, setNameFilter] = useState("");
 	const [cartCounter, setCartCounter] = useState(0);
 	return (
 		<StyledMain>
-			<Header cartCounter={cartCounter} />
-			<StyledHeading4>Redefine sua busca</StyledHeading4>
+			<Header cartCounter={cartCounter} setNameFilter={setNameFilter} />
+			<StyledHeading4
+				onClick={() => {
+					setFilterValue([0, 99999]);
+				}}
+			>
+				Redefine sua busca
+			</StyledHeading4>
 			<SearchCount>
 				<strong>{data.items.length}</strong> Produtos encontrados
 			</SearchCount>
-			<Filter SetFilter={setValueFilter} />
+			<Filter SetFilter={setFilterValue} />
 			<ProductGalery
 				data={data}
-				filter={valueFilter}
+				filter={filterValue}
+                nameFilter={nameFilter}
 				setCartCounter={setCartCounter}
 			/>
 		</StyledMain>
