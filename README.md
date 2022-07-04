@@ -6,7 +6,7 @@ Recriação da pagina de produtos da wine com React, Typescript e next.js. Foi u
 
 ## Link
 
-[Clique Aqui](https://wine-page-pusxy8j3f-davisralves.vercel.app/)
+[Clique Aqui](https://wine-page-3z9a6vbs8-davisralves.vercel.app/)
 
 ## Tecnologias Utilizadas
 
