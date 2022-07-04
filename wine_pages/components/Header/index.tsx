@@ -120,7 +120,10 @@ export default function Header({ cartCounter, setNameFilter }: Props) {
 
 			<SearchIcon onClick={() => setShowInput(true)}>
 				{showInput ? (
-					<StyledInput onChange={(e) => setNameFilter(e.target.value)} />
+					<StyledInput
+						type="text"
+						onChange={(e) => setNameFilter(e.target.value)}
+					/>
 				) : (
 					<Image
 						alt="search logo"

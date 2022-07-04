@@ -20,7 +20,9 @@ jest.spyOn(require("next/router"), "useRouter");
 
 describe("Test if product galery render as aspected", () => {
 	it("Buttons are render correctly", () => {
-		render(<ProductGalery data={{ items: wine }} filter={[0, 9999]} />);
+		render(
+			<ProductGalery data={{ items: wine }} filter={[0, 9999]} nameFilter="" />
+		);
 		const [button1, button2] = screen.getAllByRole("button", {
 			name: "Adicionar",
 		});
@@ -28,7 +30,9 @@ describe("Test if product galery render as aspected", () => {
 		expect(button2).toBeInTheDocument();
 	});
 	it("Cards are render correctly", () => {
-		render(<ProductGalery data={{ items: wine }} filter={[0, 9999]} />);
+		render(
+			<ProductGalery data={{ items: wine }} filter={[0, 9999]} nameFilter="" />
+		);
 		const cardsAndButtons = screen.getAllByTestId("button-and-card");
 		expect(cardsAndButtons).toHaveLength(2);
 		expect(cardsAndButtons[0]).toBeInTheDocument();
