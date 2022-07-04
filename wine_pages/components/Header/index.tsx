@@ -4,13 +4,8 @@ import searchLogo from "../../images/busca.png";
 import cartLogo from "../../images/winebox.png";
 import countLogo from "../../images/conta.png";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import {
-	createCart,
-	getCartFromLocalStorage,
-} from "../../services/cartLocalStorage";
-import IWine from "../../interfaces/WineInterface";
-import ProductGalery from "../ProductGalery";
+import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 const StyledHeader = styled.header`
 	background: #ffffff;
@@ -97,11 +92,19 @@ const LogoContainer = styled.div`
 	top: 5%;
 `;
 
+const StyledInput = styled.input`
+	position: absolute;
+	right: 30%;
+	margin-top: 1em;
+`;
+
 interface Props {
 	cartCounter: number;
+	setNameFilter: Dispatch<SetStateAction<string>>;
 }
 
-export default function Header({ cartCounter }: Props) {
+export default function Header({ cartCounter, setNameFilter }: Props) {
+	const [showInput, setShowInput] = useState(false);
 	return (
 		<StyledHeader>
 			<LogoContainer>
@@ -115,8 +118,17 @@ export default function Header({ cartCounter }: Props) {
 				<StylePages>Eventos</StylePages>
 			</StyledNav>
 
-			<SearchIcon>
-				<Image alt="search logo" width="56px" height="56px" src={searchLogo} />
+			<SearchIcon onClick={() => setShowInput(true)}>
+				{showInput ? (
+					<StyledInput onChange={(e) => setNameFilter(e.target.value)} />
+				) : (
+					<Image
+						alt="search logo"
+						width="56px"
+						height="56px"
+						src={searchLogo}
+					/>
+				)}
 			</SearchIcon>
 			<UserLogo>
 				<Image alt="user logo" width="56px" height="56px" src={countLogo} />

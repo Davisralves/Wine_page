@@ -30,7 +30,7 @@ const StyledHeading4 = styled(StyledAside)`
 	color: #000000;
 
 	&:hover {
-		color: #b6116e;;
+		color: #b6116e;
 	}
 `;
 
@@ -69,10 +69,11 @@ const Home: NextPage = ({
 	data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const [filterValue, setFilterValue] = useState([0, 99999]);
+	const [nameFilter, setNameFilter] = useState("");
 	const [cartCounter, setCartCounter] = useState(0);
 	return (
 		<StyledMain>
-			<Header cartCounter={cartCounter} />
+			<Header cartCounter={cartCounter} setNameFilter={setNameFilter} />
 			<StyledHeading4
 				onClick={() => {
 					setFilterValue([0, 99999]);
@@ -87,6 +88,7 @@ const Home: NextPage = ({
 			<ProductGalery
 				data={data}
 				filter={filterValue}
+                nameFilter={nameFilter}
 				setCartCounter={setCartCounter}
 			/>
 		</StyledMain>
