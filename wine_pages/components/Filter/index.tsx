@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CheckBox from "./CheckBox";
-import { Dispatch, SetStateAction } from "react";
-import { FormEventHandler } from "react";
+import React, { Dispatch, SetStateAction } from "react";
+import { EventHandler, SyntheticEvent, FormEventHandler } from "react";
 const StyledFilter = styled.aside`
 	position: absolute;
 	width: 256px;
@@ -35,7 +35,7 @@ const PriceWord = styled.span`
 	color: #333333;
 `;
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
 	position: absolute;
 	left: 0%;
 	right: 0%;
@@ -62,7 +62,7 @@ export default function Filter({ SetFilter }: Props) {
 			<StyledPrice>
 				<PriceWord>Por Preço</PriceWord>
 			</StyledPrice>
-			<StyledForm onChange={ handleChange }>
+			<StyledForm onChange={handleChange}>
 				<CheckBox text="Até 40" id="ate_40" value={"0_40"} />
 				<CheckBox text="R$40 A R$60" id="de_40_60" value={"40_60"} />
 				<CheckBox text="R$100 A R$200" id="de_100_200" value={"100_200"} />
