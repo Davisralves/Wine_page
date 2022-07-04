@@ -4,11 +4,18 @@ import searchLogo from "../../images/busca.png";
 import cartLogo from "../../images/winebox.png";
 import countLogo from "../../images/conta.png";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import {
+	createCart,
+	getCartFromLocalStorage,
+} from "../../services/cartLocalStorage";
+import IWine from "../../interfaces/WineInterface";
+import ProductGalery from "../ProductGalery";
 
 const StyledHeader = styled.header`
 	background: #ffffff;
 	width: 6%;
-	padding-bottom: 4.4%;
+	padding-bottom: 6.8%;
 `;
 
 const StylePages = styled.div`
@@ -39,28 +46,28 @@ const StyledNav = styled.nav`
 	position: absolute;
 	width: 479px;
 	height: 24px;
-	left: calc(50% - 479px / 2 - 144.35px);
+	left: 20%;
 	top: 32px;
 `;
 
 const SearchIcon = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 20%;
+	right: 18%;
 	top: 2.5%;
 `;
 
 const UserLogo = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 15%;
-	top: 2.5%;
+	right: 10%;
+	top: 3%;
 `;
 const Cart = styled.div`
 	position: absolute;
 	width: 56px;
-	right: 10%;
-	top: 2.5%;
+	right: 2%;
+	top: 3%;
 `;
 
 const CartCounter = styled.div`
@@ -87,9 +94,14 @@ const LogoContainer = styled.div`
 	height: 31px;
 	position: absolute;
 	left: 5%;
-	top: 2.5%;
+	top: 5%;
 `;
-export default function Header() {
+
+interface Props {
+	cartCounter: number;
+}
+
+export default function Header({ cartCounter }: Props) {
 	return (
 		<StyledHeader>
 			<LogoContainer>
@@ -111,7 +123,7 @@ export default function Header() {
 			</UserLogo>
 			<Cart>
 				<Image alt="cart logo" width="56px" height="56px" src={cartLogo} />
-				<CartCounter>0</CartCounter>
+				<CartCounter data-testid="cart-counter">{cartCounter}</CartCounter>
 			</Cart>
 		</StyledHeader>
 	);

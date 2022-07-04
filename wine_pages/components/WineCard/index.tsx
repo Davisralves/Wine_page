@@ -142,7 +142,7 @@ export default function WineCard({
 					alt="Wine"
 					loader={myLoader}
 					src={image}
-					width="198.57px"
+					width="120.57px"
 					height="178.13px"
 				/>
 			</ImageContainer>

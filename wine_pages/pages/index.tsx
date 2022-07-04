@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
+import type { InferGetServerSidePropsType, NextPage } from "next";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
-import wine from "../mocks/winesjson";
+import IWine from "../interfaces/WineInterface";
+import { GetServerSideProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
-
 const StyledMain = styled.main`
 	background: #ffffff;
 	border-width: 0.1px;
@@ -21,6 +21,7 @@ const StyledAside = styled.h4`
 `;
 
 const StyledHeading4 = styled(StyledAside)`
+	left: 7%;
 	font-family: "Neo Sans Std";
 	font-style: normal;
 	font-weight: 700;
@@ -40,23 +41,44 @@ const SearchCount = styled.div`
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 22px;
-	/* identical to box height */
-
 	color: #262626;
 `;
 
-const Home: NextPage = () => {
-	const [filter, setFilter] = useState([0, 99999]);
+interface Props {
+	props: {
+		data: {
+			items: IWine[];
+		};
+	};
+}
+export const getServerSideProps: GetServerSideProps = async (
+	context
+): Promise<Props> => {
+	const page = context.query.page || 1;
+	const link = `https://wine-back-test.herokuapp.com/products?page=${page}&limit=10`;
+	const res = await fetch(link);
+	const data = await res.json();
+	return { props: { data } };
+};
 
+const Home: NextPage = ({
+	data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const [valueFilter, setValueFilter] = useState([0, 99999]);
+	const [cartCounter, setCartCounter] = useState(0);
 	return (
 		<StyledMain>
-			<Header />
+			<Header cartCounter={cartCounter} />
 			<StyledHeading4>Redefine sua busca</StyledHeading4>
 			<SearchCount>
-				<strong>49</strong> Produtos encontrados
+				<strong>{data.items.length}</strong> Produtos encontrados
 			</SearchCount>
-			<Filter SetFilter={setFilter} />
-			<ProductGalery data={{ items: wine }} filter={filter} />
+			<Filter SetFilter={setValueFilter} />
+			<ProductGalery
+				data={data}
+				filter={valueFilter}
+				setCartCounter={setCartCounter}
+			/>
 		</StyledMain>
 	);
 };
