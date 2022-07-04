@@ -47,25 +47,33 @@ const PassPage = styled.a`
 		color: white;
 	}
 `;
+
 export default function Footer() {
 	const { query } = useRouter();
-	let actualPage = (query.page as string) || 1;
-	if (typeof actualPage == "string") actualPage = parseInt(actualPage);
+	const actualPageString = (query.page as string) || "1";
+	const actualPage = parseInt(actualPageString);
+	const pagesArray = [actualPage, actualPage + 1, actualPage + 2];
+	const PreviousButtonOrNull = () => {
+		return actualPage > 1 ? (
+			<Link href={`/?page=${actualPage - 1}`}>
+				<PassPage>Anterior ...</PassPage>
+			</Link>
+		) : null;
+	};
+
+	const FunctionalOrDisabledButton = (page: number) => {
+		return actualPage == page ? (
+			<DisabledPageButton disabled>{page}</DisabledPageButton>
+		) : (
+			<PageButtons>{page}</PageButtons>
+		);
+	};
 	return (
 		<StyledFooter>
-			{actualPage > 1 ? (
-				<Link href={`/?page=${actualPage - 1}`}>
-					<PassPage>Anterior ...</PassPage>
-				</Link>
-			) : null}
-
-			{[actualPage, actualPage + 1, actualPage + 2].map((page, index) => (
+			{PreviousButtonOrNull()}
+			{pagesArray.map((page, index) => (
 				<Link href={`/?page=${page}`} key={index}>
-					{actualPage == page ? (
-						<DisabledPageButton disabled>{page}</DisabledPageButton>
-					) : (
-						<PageButtons>{page}</PageButtons>
-					)}
+					{FunctionalOrDisabledButton(page)}
 				</Link>
 			))}
 			<Link href={`/?page=${actualPage + 1}`}>

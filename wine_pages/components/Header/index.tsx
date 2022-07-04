@@ -105,6 +105,16 @@ interface Props {
 
 export default function Header({ cartCounter, setNameFilter }: Props) {
 	const [showInput, setShowInput] = useState(false);
+	const SearchIconOrSearchInput = () => {
+		return showInput ? (
+			<StyledInput
+				type="text"
+				onChange={(e) => setNameFilter(e.target.value)}
+			/>
+		) : (
+			<Image alt="search logo" width="56px" height="56px" src={searchLogo} />
+		);
+	};
 	return (
 		<StyledHeader>
 			<LogoContainer>
@@ -119,19 +129,7 @@ export default function Header({ cartCounter, setNameFilter }: Props) {
 			</StyledNav>
 
 			<SearchIcon onClick={() => setShowInput(true)}>
-				{showInput ? (
-					<StyledInput
-						type="text"
-						onChange={(e) => setNameFilter(e.target.value)}
-					/>
-				) : (
-					<Image
-						alt="search logo"
-						width="56px"
-						height="56px"
-						src={searchLogo}
-					/>
-				)}
+				{SearchIconOrSearchInput()}
 			</SearchIcon>
 			<UserLogo>
 				<Image alt="user logo" width="56px" height="56px" src={countLogo} />

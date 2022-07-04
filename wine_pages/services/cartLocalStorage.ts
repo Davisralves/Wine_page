@@ -8,7 +8,7 @@ export const createCart = () => {
 	}
 };
 
-export const saveWineInCart = (item: IWine) => {
+export const saveWineInCart = (item: IWine): number => {
 	if (typeof window !== "undefined") {
 		createCart();
 		const actual_cart = JSON.parse(localStorage.getItem("cart") as string);
@@ -19,6 +19,7 @@ export const saveWineInCart = (item: IWine) => {
 		}
 		return actual_cart.length;
 	}
+	return 0;
 };
 
 export const getCartFromLocalStorage = (): IWine[] | undefined => {

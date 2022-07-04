@@ -4,6 +4,7 @@ import { saveWineInCart } from "../../services/cartLocalStorage";
 import IWine from "../../interfaces/WineInterface";
 import { Dispatch, SetStateAction } from "react";
 import Footer from "../Footer";
+
 const Galery = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -25,19 +26,16 @@ const CardButtonDiv = styled.div`
 `;
 
 const SmallButton = styled.button`
-	/* Auto layout */
 	padding: 11.6806px 23.3612px;
 	gap: 9.73px;
 	width: 256px;
 	height: 39.36px;
 	top: 348px;
 	margin-top: 30px;
-	/* functional / sucess-default */
 	background: #7ebc43;
 	box-shadow: 0px 0.973384px 1.94677px rgba(0, 0, 0, 0.2);
 	border-radius: 3.89354px;
 	border-color: #7ebc43;
-	/* Button font*/
 	font-family: "Lato";
 	font-style: normal;
 	font-weight: 700;
@@ -57,23 +55,22 @@ interface Props {
 
 function ProductGalery({ data, filter, setCartCounter, nameFilter }: Props) {
 	const [greaterThanThisValue, lesserThanThisValue] = filter;
-	const handleClick = (item: IWine) => {
-		setCartCounter(saveWineInCart(item));
-	};
+	const wineIsValid = (item: IWine): boolean =>
+		item.price > greaterThanThisValue &&
+		item.price < lesserThanThisValue &&
+		item.name.toLocaleLowerCase().includes(nameFilter.toLocaleLowerCase());
 	const galeryCard = (item: IWine, index: number) => (
 		<CardButtonDiv data-testid="button-and-card" key={index}>
 			<WineCard wine={item} />
-			<SmallButton onClick={() => handleClick(item)}>Adicionar</SmallButton>
+			<SmallButton onClick={() => setCartCounter(saveWineInCart(item))}>
+				Adicionar
+			</SmallButton>
 		</CardButtonDiv>
 	);
 	return (
 		<Galery>
 			{data.items.map((item, index) =>
-				item.price > greaterThanThisValue &&
-				item.price < lesserThanThisValue &&
-				item.name.toLocaleLowerCase().includes(nameFilter.toLocaleLowerCase())
-					? galeryCard(item, index)
-					: null
+				wineIsValid(item) ? galeryCard(item, index) : null
 			)}
 			<Footer />
 		</Galery>

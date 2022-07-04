@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import ProductGalery from "../components/ProductGalery";
 import IWine from "../interfaces/WineInterface";
-import { GetServerSideProps, InferGetStaticPropsType } from "next";
+import { GetServerSideProps } from "next";
 import { useState } from "react";
 const StyledMain = styled.main`
 	background: #ffffff;
