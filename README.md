@@ -29,7 +29,7 @@ Recriação da pagina de produtos da wine com React, Typescript e next.js. Foi u
    
    `git@github.com:Davisralves/Wine_page.git`
 
-2. Entre na pasta wine_pages o comando:
+2. Entre na pasta wine_pages com o comando:
    
    `cd wine_pages`
 
