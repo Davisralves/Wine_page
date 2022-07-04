@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Recriação da pagina de produtos da wine com React, Typescript e next.js. Foi utilizada esse [Repositorio](https://github.com/winecombr/frontend-challenge) da wine como referencia para fazer o projeto onde foi criado um e-commerce que é possivel consultar os vinhos disponiveis e adicionar ao carrinho de compras.
+Recriação da pagina de produtos da wine com React, Typescript e next.js. Foi utilizado esse [Repositorio](https://github.com/winecombr/frontend-challenge) da wine como referência para fazer o projeto onde foi criado um e-commerce que é possivel consultar os vinhos disponíveis e adicionar ao carrinho de compras.
 
 ## Link
 
